@@ -3,90 +3,123 @@ import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react
 import { ScrollView, RectButton } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import { Ionicons } from '@expo/vector-icons';
-//import { Card, CardItem } from 'react-native-elements';
 import {Card, CardItem, Body, Button } from 'native-base';
-
+import { Icon } from 'react-native-elements';
+import Panel from './Panel';
 
 
 import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen() {
+const helplines = ['Campus Safety', 'Ulifeline', 'Trevor Project'];
 
-  const helplines = ['campus Safty', 'Ulifeline', 'Trevor Project'];
-  return (
-
-    <ScrollView horizontal={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
-    <View  style={styles.cardSize}>
-      { helplines.map((txt)=>{
-        return (
-         <SmallCardComponent text={txt}/>
-        );
-      })
-    }
-    </View>
-  </ScrollView>
-    
-    );
+class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props);
   }
-  function SmallCardComponent({text}) {
-    return (
+
+  SmallCardComponent(text) {
+    return(
     <View>
-      <View>
-       <Card style={styles.cardSize}> 
-          <Text style={styles.cardTextStyle}>{text}</Text>
-            <Button style={styles.callbox}>
-            <Image 
-            style={styles.phoneimg}
-            source= {require('../assets/images/phone-image.png')}/>
-          </Button>
-        </Card>
-      </View>
+       <Card style={styles.cardSize} >
+       <Text style={styles.cardTextStyle}>{text}</Text>
+       <Image
+        style={styles.phoneimg}
+        source= {require('../assets/images/phone-image.png')}/>
+      </Card>
    </View>
     );
   }
 
-
-
-function OptionButton({ icon, label, onPress, isLastOption }) {
-    return (
-      <RectButton style={[styles.option, isLastOption && styles.lastOption]} type='Text' onPress={onPress}>
-        <View style={{ flexDirection: 'row' }}>
-          <View style={styles.optionIconContainer}>
-            <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
-          </View>
-          <View style={styles.optionTextContainer}>
-            <Text style={styles.optionText}>{label}</Text>
-          </View>
-        </View>
-      </RectButton>
-    );
+  toggle() {
+    this.setState({
+        expanded : !this.state.expanded  //Step 2
+    });
   }
 
- function CardComponent() {
-   return (
-    <Card>
-    <CardItem header button onPress={() => alert("This is Card Header")}>
-      <Text>NativeBase</Text>
-    </CardItem>
-    <CardItem button onPress={() => alert("This is Card Body")}>
-      <Body>
-        <Text>
-          Click on any carditem
-        </Text>
-      </Body>
-    </CardItem>
-    <CardItem footer button onPress={() => alert("This is Card Footer")}>
-      <Text>GeekyAnts</Text>
-    </CardItem>
-  </Card>
-   );
- }
+  render() {
+    return (
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+    <ScrollView horizontal={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
+    <View>
+    <View>
+    <Text style={styles.mainTextStyle}>{'Hotlines& \n Appointments'}</Text>
+    </View>
+    <View style={styles.finalrow}>
+      {helplines.map((text) => {return(this.SmallCardComponent(text))})}
+   </View>
+   <View>
+     <Panel
+      text='CAPS'
+      extendedText='Counsiling and Psycological Services'/>
+   </View>
+   </View>
+   </ScrollView>
+    </ScrollView>
+  );
+}
 
-const styles = StyleSheet.create({
+}
+
+export default HomeScreen;
+
+var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2D709E',
-    //backgroundColor: linear-gradient('180deg', '#0F3258', '0','#2D709E', '100',)
+  },
+  mainTextStyle:{
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 40,
+    margin: 10,
+    color: 'white',
+  },
+  finalrow: {
+    flexDirection: 'row',
+    margin: 10,
+  },
+  cardSize : {
+    width:120,
+    height:150,
+    borderRadius:10,
+    flexDirection:'row',
+    padding: 10,
+    marginRight: 18,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+  },
+  cardTextStyle: {
+  fontStyle: 'normal',
+  fontWeight: 'normal',
+  fontSize: 18,
+  lineHeight: 22,
+  textAlign: 'center',
+},
+phoneimg: {
+  margin: 35,
+},
+  outerCardTextStyle: {
+    fontWeight: 'bold',
+    fontSize: 25,
+  },
+  outercardSecondTextStyle: {
+    marginTop: 10,
+  },
+  moreContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  outerCards: {
+    height:100,
+    borderRadius:10,
+    padding: 15,
+    marginTop: 30,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  outerCardsText: {
+    flex: 1,
+    flexDirection: 'column'
   },
   developmentModeText: {
     marginBottom: 20,
@@ -170,26 +203,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
-  cardSize : {
-    width:150,
-    height:150,
-    borderRadius:10,
-    flexDirection:'row',
-    
-  },
   callbox: {
     width: 100,
-    padding: 25,
-    marginRight: 50,
-    marginTop: 50,
+    // padding: 25,
   },
-cardTextStyle: {
-//fontFamily: 'sans-serif',
-fontStyle: 'normal',
-fontWeight: 'normal',
-fontSize: 18,
-lineHeight: 22,
-textAlign: 'center',
-
-},
 });
