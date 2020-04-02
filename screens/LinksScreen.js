@@ -36,6 +36,10 @@ export default function LinksScreen() {
 function showTerms(){
   return(
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+    <View>
+    <View >
+    <Text style={styles.mainTextStyle}>{'Settings'}</Text>
+    </View>
     <OptionButton
       //icon="md-school"
       label="Change Password"
@@ -53,6 +57,7 @@ function showTerms(){
       onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
       isLastOption
     />
+    </View>
     <CardComponent text="Terms and conditions display"/>
 
   </ScrollView>
@@ -112,6 +117,14 @@ const styles = StyleSheet.create({
     flex: 1,
     //backgroundColor: '#fafafa',
     backgroundColor: '#2D709E',
+  },
+  mainTextStyle:{
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 30,
+    marginTop: 0,
+   
+    color: 'white',
   },
   contentContainer: {
     paddingTop: 15,

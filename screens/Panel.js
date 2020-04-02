@@ -64,7 +64,11 @@ _setMinHeight(event){
         <View style={styles.outerCards} onLayout={this._setMaxHeight.bind(this)}>
           <View style={styles.outerCardsText}>
             <Text style={{fontWeight: 'bold',
+<<<<<<< HEAD
             fontSize: 20,}}>Hours:                           Monday-Friday{'\n'} 9:00 am – 3:00pm
+=======
+            fontSize: 20,}}>Hours:                          Monday-Friday{'\n'} 9:00 am – 3:00pm
+>>>>>>> upstream/newbranch
             </Text>
 
             <Text style={{fontWeight: 'bold',
@@ -135,4 +139,15 @@ var styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: -10,
   },
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+>>>>>>> upstream/newbranch
 });
