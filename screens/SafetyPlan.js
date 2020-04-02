@@ -10,15 +10,15 @@ import Panel from './Panel';
 
 import { MonoText } from '../components/StyledText';
 
-const helplines = ['Campus Safety', 'Ulifeline', 'Trevor Project'];
+const helplines = ['Mom', 'Sister', 'Friend'];
 
-class HomeScreen extends React.Component {
+class SafetyPlan extends React.Component {
   constructor(props) {
     super(props);
   }
   callButton = () =>
   {
-    alert("Call button Clicked!!!");
+    alert("Shows mobile's Contacts");
   }
 
   SmallCardComponent(text) {
@@ -46,21 +46,38 @@ class HomeScreen extends React.Component {
     <ScrollView horizontal={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
     <View>
     <View >
-    <Text style={styles.mainTextStyle}>{'Hotlines& \n Appointments'}</Text>
+    <Text style={styles.mainTextStyle}>{'Safety Plan'}</Text>
     </View>
     <View style={styles.finalrow}>
       {helplines.map((text) => {return(this.SmallCardComponent(text))})}
    </View>
    <View>
-     <Panel
-      text='CAPS'
-      extendedText='Counseling and Psycological Services'/>
-   </View>
+   <TouchableOpacity activeOpacity = { .5 } onPress={ this.callButton}>
+          <Text style={styles.allContactsTextStyle}>All Contacts</Text>
+    </TouchableOpacity>
+    </View>
    <View>
      <Panel
-      text='SHS'
-      extendedText='Student Health Services'/>
-   </View>
+      text='Step 1:'
+      extendedText='Warning Signs'/>
+     <Panel
+      text='Step 2:'
+      extendedText='Internal Coping Strategies'/>
+      <Panel
+      text='Step 3:'
+      extendedText='People Who Can Help, Support, 
+       & Distract Me'/>
+      <Panel
+      text='Step 4:'
+      extendedText='People Whom I can Ask For Help'/>
+      <Panel
+      text='Step 5:'
+      extendedText='Professionals or Agencies I can 
+       Contact During Crisis'/>
+      <Panel
+      text='Step 6:'
+      extendedText='Making the Environment Safe'/>
+      </View>
    </View>
    </ScrollView>
     </ScrollView>
@@ -69,7 +86,7 @@ class HomeScreen extends React.Component {
 
 }
 
-export default HomeScreen;
+export default SafetyPlan;
 
 var styles = StyleSheet.create({
   container: {
@@ -88,6 +105,11 @@ var styles = StyleSheet.create({
   finalrow: {
     flexDirection: 'row',
     margin: 10,
+  },
+  allContactsTextStyle:{
+      color: 'white',
+      marginLeft: 160,
+      textDecorationLine: 'underline',
   },
   cardSize : {
     width:120,
