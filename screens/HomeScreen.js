@@ -34,9 +34,6 @@ class HomeScreen extends React.Component {
     );
   }
 
-  toggle() {·
-    });
-  }
 
   render() {
     return (
