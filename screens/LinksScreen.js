@@ -16,15 +16,6 @@ class LinksScreen extends React.Component {
           };
     }
 
-<<<<<<< HEAD
-      <OptionButton
-        //icon="md-compass"
-        label="Terms and Conditions"
-        onPress={()=>showTerms}
-      />
-      
-=======
->>>>>>> sowmya/myfirstbranch
 
   showTerms(){
       this.setState({

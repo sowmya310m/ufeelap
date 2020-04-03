@@ -7,12 +7,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import Safety from '../screens/SafetyPlan';
-<<<<<<< HEAD
-import ResourcesScreen from '../screens/ResourcesScreen';
-=======
 import Colors from '../constants/Colors';
 import FeelingSecond from '../components/FeelingSecond';
->>>>>>> sowmya/myfirstbranch
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -73,17 +69,6 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-cloud-outline" />,
         }}
       />
-<<<<<<< HEAD
-       {/* <BottomTab.Screen
-        name="Resources"
-        component={ResourcesScreen}
-        options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-compass" />,
-        }}
-      />  */}
-=======
->>>>>>> sowmya/myfirstbranch
       <BottomTab.Screen
         name="Main"
         component={LinksScreen}
@@ -96,22 +81,6 @@ export default function BottomTabNavigator({ navigation, route }) {
   );
 }
 
-<<<<<<< HEAD
-function getHeaderTitle(route) {
-  const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
-
-  switch (routeName) {
-    case 'Home':
-      return '';
-    case 'Links':
-      return 'Settings';
-    case 'Safe':
-      return '';
-    case 'Resources':
-      return 'Resources';
-  }
-}
-=======
 // function getHeaderTitle(route) {
 //   const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
 //
@@ -124,4 +93,3 @@ function getHeaderTitle(route) {
 //       return '';
 //   }
 // }
->>>>>>> sowmya/myfirstbranch
