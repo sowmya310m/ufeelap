@@ -8,109 +8,74 @@ import { Card, ListItem, Button, Icon } from 'react-native-elements';
 
 
 
-export default function LinksScreen() {
-  return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <OptionButton
-        //icon="md-school"
-        label="Change Password"
-        onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
-      />
+class LinksScreen extends React.Component {
+  constructor(props) {
+      super(props)
+      this.state = {
+              expandedButton : false,
+          };
+    }
 
+<<<<<<< HEAD
       <OptionButton
         //icon="md-compass"
         label="Terms and Conditions"
         onPress={()=>showTerms}
       />
       
+=======
+>>>>>>> sowmya/myfirstbranch
 
-      <OptionButton
-        label="Logout"
-        onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
-        isLastOption
-      />
-    </ScrollView>
-  );
-}
+  showTerms(){
+      this.setState({
+          expandedButton : !this.state.expandedButton  //Step 2
+      });
 
-function showTerms(){
-  return(
+    }
+
+  render() {
+  console.log("enterrbvhwvhjwv", this.state.expandedButton);
+  return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-    <View>
-    <View >
-    <Text style={styles.mainTextStyle}>{'Settings'}</Text>
-    </View>
-    <OptionButton
-      //icon="md-school"
-      label="Change Password"
-      onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
-    />
-
-    <OptionButton
-      //icon="md-compass"
-      label="Terms and Conditions"
-      onPress={()=>showTerms}
-    />
-
-    <OptionButton
-      label="Logout"
-      onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
-      isLastOption
-    />
-    </View>
-    <CardComponent text="Terms and conditions display"/>
-
-  </ScrollView>
-
-  );
-}
-
-function OptionButton({ icon, label, onPress, isLastOption }) {
-  return (
-    <RectButton style={[styles.option, isLastOption && styles.lastOption]} type='Text' onPress={onPress}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
+      <Text style={styles.mainTextStyle}> Settings</Text>
+      <View style={{marginTop: 20}}>
+      <RectButton style={[styles.option, styles.firstOption ]} type='Text' onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}>
+        <View>
+            <Text style={styles.optionText}>Change Password</Text>
         </View>
-        <View style={styles.optionTextContainer}>
-          <Text style={styles.optionText}>{label}</Text>
+      </RectButton>
+      <RectButton style={[styles.option]} type='Text' onPress={this.showTerms.bind(this, 'second')}>
+        <View>
+            <Text style={styles.optionText}>Terms and Condition</Text>
+            {
+            this.state.expandedButton &&
+            <Card>
+            <Text> Hiiiiiiiiiiiiiiivvbhwbvhidsbvsbvjbvjbvj njvbdjvjdbvjbvjbvbv vhbv </Text>
+              <Text> Hiiiiiiiiiiiiiiivvbhwbvhidsbvsbvjbvjbvj njvbdjvjdbvjbvjbvbv vhbv </Text>
+                <Text> Hiiiiiiiiiiiiiiivvbhwbvhidsbvsbvjbvjbvj njvbdjvjdbvjbvjbvbv vhbv </Text>
+                  <Text> Hiiiiiiiiiiiiiiivvbhwbvhidsbvsbvjbvjbvj njvbdjvjdbvjbvjbvbv vhbv </Text>
+                    <Text> Hiiiiiiiiiiiiiiivvbhwbvhidsbvsbvjbvjbvj njvbdjvjdbvjbvjbvbv vhbv </Text>
+
+            <Text style={styles.closeText}> close cvgfhvbenbinbtmbni </Text>
+             </Card>
+           }
         </View>
+      </RectButton>
+      <RectButton style={[styles.option ]} type='Text' onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}>
+        <View>
+            <Text style={styles.optionText}>Logout</Text>
+        </View>
+      </RectButton>
       </View>
-    </RectButton>
+    </ScrollView>
+
   );
-}
-function CardComponent({text}) {
-  return (
-  <View>
-    <View>
-     <Card style={styles.cardSize}> 
-        <Text style={styles.cardTextStyle}>{text}</Text>
-      </Card>
-    </View>
- </View>
-  );
+ }
+
 }
 
-// function CardComponent() {
-//   return (
-    
-//     <Card
-//   title='HELLO WORLDS'
-//   image={require('../assets/images/robot-prod.png')}>
-//   <Text style={{marginBottom: 10}}>
-//     The idea with React Native Elements is more about component structure than actual design.
-//   </Text>
-//   <Button
-//   icon={{
-//     name: "arrow-right",
-//     size: 10,
-//     color: "white"
-//   }}
-  
-// />
-// </Card>
-//   );
-// }
+
+export default LinksScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -122,15 +87,22 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 30,
-    marginTop: 0,
-   
+    margin: 10,
     color: 'white',
+  },
+  closeText: {
+    textDecorationLine: 'underline',
+    textAlign: 'center',
   },
   contentContainer: {
     paddingTop: 15,
+    marginTop: 60,
   },
   optionIconContainer: {
     marginRight: 12,
+  },
+  firstOption: {
+    borderWidth: 0,
   },
   option: {
    // backgroundColor: '#fdfdfd',
@@ -138,12 +110,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 15,
     borderWidth: StyleSheet.hairlineWidth,
-    
-    //borderColor: '#ededed',
+    borderColor: 'white',
     //borderBottomColor: 'white',
-  },
-  lastOption: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   optionText: {
     fontSize: 15,

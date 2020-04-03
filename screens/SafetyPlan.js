@@ -16,8 +16,8 @@ class SafetyPlan extends React.Component {
   constructor(props) {
     super(props);
   }
-  callButton = () =>
-  {
+
+  callButton() {
     alert("Shows mobile's Contacts");
   }
 
@@ -65,14 +65,14 @@ class SafetyPlan extends React.Component {
       extendedText='Internal Coping Strategies'/>
       <Panel
       text='Step 3:'
-      extendedText='People Who Can Help, Support, 
+      extendedText='People Who Can Help, Support,
        & Distract Me'/>
       <Panel
       text='Step 4:'
       extendedText='People Whom I can Ask For Help'/>
       <Panel
       text='Step 5:'
-      extendedText='Professionals or Agencies I can 
+      extendedText='Professionals or Agencies I can
        Contact During Crisis'/>
       <Panel
       text='Step 6:'
@@ -88,23 +88,23 @@ class SafetyPlan extends React.Component {
 
 export default SafetyPlan;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2D709E',
   },
- 
   mainTextStyle:{
     fontStyle: 'normal',
     fontWeight: 'bold',
-    fontSize: 30,
-    marginTop: 0,
-   
+    fontSize: 35,
+    marginTop: 10,
+
     color: 'white',
   },
   finalrow: {
     flexDirection: 'row',
-    margin: 10,
+    marginTop: 25,
+    marginBottom: 20,
   },
   allContactsTextStyle:{
       color: 'white',
@@ -162,7 +162,9 @@ phoneimg: {
     textAlign: 'center',
   },
   contentContainer: {
-    paddingTop: 30,
+    marginTop: 25,
+    marginLeft: 5,
+    paddingTop: 5,
   },
   welcomeContainer: {
     alignItems: 'center',
