@@ -22,7 +22,7 @@ export default function LinksScreen() {
         label="Terms and Conditions"
         onPress={()=>showTerms}
       />
-      <CardComponent text="This Card component shows Terms and conditions of UFEEl mobile App"/>
+      
 
       <OptionButton
         label="Logout"

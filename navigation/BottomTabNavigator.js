@@ -5,6 +5,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import Safety from '../screens/SafetyPlan';
+import ResourcesScreen from '../screens/ResourcesScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -35,7 +36,14 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
         }}
       />
-      
+       {/* <BottomTab.Screen
+        name="Resources"
+        component={ResourcesScreen}
+        options={{
+          title: 'Resources',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-compass" />,
+        }}
+      />  */}
       <BottomTab.Screen
         name="Links"
         component={LinksScreen}
@@ -58,5 +66,7 @@ function getHeaderTitle(route) {
       return 'Settings';
     case 'Safe':
       return '';
+    case 'Resources':
+      return 'Resources';
   }
 }
