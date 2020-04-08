@@ -34,11 +34,6 @@ class HomeScreen extends React.Component {
     );
   }
 
-  toggle() {
-    this.setState({
-        expanded : !this.state.expanded  //Step 2
-    });
-  }
 
   render() {
     return (
@@ -76,13 +71,13 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#2D709E',
   },
- 
+
   mainTextStyle:{
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 30,
     marginTop: 0,
-   
+
     color: 'white',
   },
   finalrow: {

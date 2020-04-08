@@ -10,12 +10,13 @@ class Panel extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-            expanded    : true,
+            expanded    : false,
             animation   : new Animated.Value(100)
         };
   }
 
  toggle() {
+  console.log("exp",this.state.expanded);
    let initialValue    = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
         finalValue      = this.state.expanded? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
 
@@ -45,9 +46,9 @@ _setMinHeight(event){
 }
 
   render() {
-    let lable = "keyboard-arrow-right";
-    if(this.state.expanded == false){
-      lable = "keyboard-arrow-down";   //Step 4
+    let lable = "keyboard-arrow-down";
+    if(!this.state.expanded){
+      lable = "keyboard-arrow-right";   //Step 4
     }
     return(
       <Animated.View
@@ -64,9 +65,8 @@ _setMinHeight(event){
         <View style={styles.outerCards} onLayout={this._setMaxHeight.bind(this)}>
           <View style={styles.outerCardsText}>
             <Text style={{fontWeight: 'bold',
-            fontSize: 20,}}>Hours:                          Monday-Friday{'\n'} 9:00 am – 3:00pm
+            fontSize: 20,}}>Hours:                           Monday-Friday{'\n'} 9:00 am – 3:00pm
             </Text>
-
             <Text style={{fontWeight: 'bold',
             fontSize: 20,}}
             onPress={() => Linking.openURL('https://www.scu.edu/map/')}>  Cowell Center
@@ -135,12 +135,4 @@ var styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: -10,
   },
-
-
-
-
-
-
-
-
 });
