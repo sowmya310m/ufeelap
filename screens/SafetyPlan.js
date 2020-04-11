@@ -59,24 +59,30 @@ class SafetyPlan extends React.Component {
    <View>
      <Panel
       text='Step 1:'
-      extendedText='Warning Signs'/>
+      extendedText='Warning Signs'
+      displayText='Display text when step1 is clicked'/>
      <Panel
       text='Step 2:'
-      extendedText='Internal Coping Strategies'/>
+      extendedText='Internal Coping Strategies'
+      displayText='Display text when step2 is clicked'/>
       <Panel
       text='Step 3:'
       extendedText='People Who Can Help, Support,
-       & Distract Me'/>
+       & Distract Me'
+       displayText='Display text when step 3 is clicked'/>
       <Panel
       text='Step 4:'
-      extendedText='People Whom I can Ask For Help'/>
+      extendedText='People Whom I can Ask For Help'
+      displayText='Display text when Step 4 is clicked'/>
       <Panel
       text='Step 5:'
       extendedText='Professionals or Agencies I can
-       Contact During Crisis'/>
+       Contact During Crisis'
+       displayText='Display text when step 5 is clicked'/>
       <Panel
       text='Step 6:'
-      extendedText='Making the Environment Safe'/>
+      extendedText='Making the Environment Safe'
+      displayText='Display text when step 6  is clicked'/>
       </View>
    </View>
    </ScrollView>

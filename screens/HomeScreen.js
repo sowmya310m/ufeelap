@@ -49,12 +49,14 @@ class HomeScreen extends React.Component {
    <View>
      <Panel
       text='CAPS'
-      extendedText='Counseling and Psycological Services'/>
+      extendedText='Counseling and Psycological Services'
+      displayText='Display text when CAPS is clicked'/>
    </View>
    <View>
      <Panel
       text='SHS'
-      extendedText='Student Health Services'/>
+      extendedText='Student Health Services'
+      displayText='Display text when SHS is clicked'/>
    </View>
    </View>
    </ScrollView>

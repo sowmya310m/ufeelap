@@ -41,13 +41,24 @@ class LinksScreen extends React.Component {
             {
             this.state.expandedButton &&
             <Card>
-            <Text> Hiiiiiiiiiiiiiiivvbhwbvhidsbvsbvjbvjbvj njvbdjvjdbvjbvjbvbv vhbv </Text>
-              <Text> Hiiiiiiiiiiiiiiivvbhwbvhidsbvsbvjbvjbvj njvbdjvjdbvjbvjbvbv vhbv </Text>
-                <Text> Hiiiiiiiiiiiiiiivvbhwbvhidsbvsbvjbvjbvj njvbdjvjdbvjbvjbvbv vhbv </Text>
-                  <Text> Hiiiiiiiiiiiiiiivvbhwbvhidsbvsbvjbvjbvj njvbdjvjdbvjbvjbvbv vhbv </Text>
-                    <Text> Hiiiiiiiiiiiiiiivvbhwbvhidsbvsbvjbvjbvj njvbdjvjdbvjbvjbvbv vhbv </Text>
-
-            <Text style={styles.closeText}> close cvgfhvbenbinbtmbni </Text>
+            <Text>Note to users: The UFEEL app was developed by SCU students for 
+              SCU students. Your personal data is encrypted and stored securely on 
+              your cell phone. Your activity on this app is not shared with SCU faculty, 
+              staff, or administrative officials. While the UFEEL app does not share your
+              activity with anyone at SCU, it may contain links to third party products, 
+              services, or software that may track your behavior online.We hope this app
+              gives you a safe space to write about your challenges, listen to podcasts, 
+              read articles about mental health, track your emotions, learn, and feel 
+              supported.
+              Any views expressed in the articles or podcasts are those of the creators, 
+              may not necessarily represent the views of SCU, and should not be construed as 
+              medical advice.
+              This app is not a substitute for professional counseling. You are encouraged to 
+              share your diary entries and emotion tracking with your mental healthcare provider. 
+              It is okay to reach out and seek the help you feel you may need. You are not alone. 
+              
+              The UFEEL Team</Text>
+            <Text style={styles.closeText}> close </Text>
              </Card>
            }
         </View>

@@ -64,15 +64,7 @@ _setMinHeight(event){
         </View>
         <View style={styles.outerCards} onLayout={this._setMaxHeight.bind(this)}>
           <View style={styles.outerCardsText}>
-            <Text style={{fontWeight: 'bold',
-            fontSize: 20,}}>Hours:                           Monday-Friday{'\n'} 9:00 am – 3:00pm
-            </Text>
-            <Text style={{fontWeight: 'bold',
-            fontSize: 20,}}
-            onPress={() => Linking.openURL('https://www.scu.edu/map/')}>  Cowell Center
-            </Text>
-
-            <Text style={styles.outercardSecondTextStyle}>{this.props.extendedText}</Text>
+          <Text style={styles.outercardSecondTextStyle}>{this.props.displayText}</Text>
           </View>
         </View>
     </Animated.View>

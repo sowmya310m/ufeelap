@@ -9,6 +9,8 @@ import LinksScreen from '../screens/LinksScreen';
 import Safety from '../screens/SafetyPlan';
 import Colors from '../constants/Colors';
 import FeelingSecond from '../components/FeelingSecond';
+import ResourcesScreen from '../screens/ResourcesScreen';
+
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -38,7 +40,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Resources"
-        component={LinksScreen}
+        component={ResourcesScreen}
         options={{
           title: 'Resources',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-wifi" />,
