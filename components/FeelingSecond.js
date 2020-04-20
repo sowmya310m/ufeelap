@@ -6,6 +6,10 @@ const feeling = ['Excited', 'Energetic', 'Playful', 'Creative', 'Aware', 'Other'
 
 class FeelingSecond extends React.Component {
 
+  constructor(props) {
+    super(props);
+  }
+
 
   FeelingButtonComponent(text) {
     return(
@@ -19,12 +23,14 @@ class FeelingSecond extends React.Component {
 
 
 render(){
+  console.log("enteringgggggg")
+  const { text } = this.props;
  return (
    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
    <View style={styles.contentContainer}>
    <Text style={styles.mainHead} >How are you {'\n'} feeling today? </Text>
    <Image source={require('../assets/images/feeling-second.png')} style = {styles.feelingImg}/>
-   <Text style={styles.regularText} > I feel joyful. </Text>
+   <Text style={styles.regularText} > I feel {text}. </Text>
    <Text style={styles.miniText} > I change my mind </Text>
    <Text style={styles.regularText} > More Specifically,{'\n'} I feel: </Text>
    </View>

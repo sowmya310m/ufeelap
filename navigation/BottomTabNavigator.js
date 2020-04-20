@@ -8,7 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import Safety from '../screens/SafetyPlan';
 import Colors from '../constants/Colors';
-import FeelingSecond from '../components/FeelingSecond';
+import FirstPage from '../components/FirstPage';
 import ResourcesScreen from '../screens/ResourcesScreen';
 
 
@@ -65,7 +65,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Home"
-        component={FeelingSecond}
+        component={FirstPage}
         options={{
           title: 'Journal',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-cloud-outline" />,
