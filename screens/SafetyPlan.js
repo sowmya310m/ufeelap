@@ -43,20 +43,22 @@ class SafetyPlan extends React.Component {
   render() {
     return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-    <ScrollView horizontal={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
     <View>
     <View >
     <Text style={styles.mainTextStyle}>{'Safety Plan'}</Text>
     </View>
+    <ScrollView horizontal={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
     <View style={styles.finalrow}>
       {helplines.map((text) => {return(this.SmallCardComponent(text))})}
    </View>
+   </ScrollView>
+
    <View>
    <TouchableOpacity activeOpacity = { .5 } onPress={ this.callButton}>
           <Text style={styles.allContactsTextStyle}>All Contacts</Text>
     </TouchableOpacity>
     </View>
-   <View>
+      <View>
      <Panel
       text='Step 1:'
       extendedText='Warning Signs'
@@ -85,7 +87,6 @@ class SafetyPlan extends React.Component {
       displayText='Display text when step 6  is clicked'/>
       </View>
    </View>
-   </ScrollView>
     </ScrollView>
   );
 }
@@ -103,13 +104,12 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 35,
-    marginTop: 10,
+    marginTop: 20,
 
     color: 'white',
   },
   finalrow: {
     flexDirection: 'row',
-    marginTop: 25,
     marginBottom: 20,
   },
   allContactsTextStyle:{

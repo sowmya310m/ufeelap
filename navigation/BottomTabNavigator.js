@@ -10,6 +10,7 @@ import Safety from '../screens/SafetyPlan';
 import Colors from '../constants/Colors';
 import FeelingSecond from '../components/FeelingSecond';
 import ResourcesScreen from '../screens/ResourcesScreen';
+import JournalScreen from '../screens/JournalScreen';
 
 
 const BottomTab = createBottomTabNavigator();
@@ -57,9 +58,9 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Calendar"
-        component={HomeScreen}
+        component={JournalScreen}
         options={{
-          title: 'Get Started',
+          title: 'Calendar',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-calendar" />,
         }}
       />

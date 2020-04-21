@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Linking } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Linking, ImageBackground, TextInput } from 'react-native';
 import { ScrollView, RectButton } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,14 +8,14 @@ import { Icon } from 'react-native-elements';
 import Panel from './Panel';
 
 
+import cloud from '../assets/images/cloud.png';
+
+
 import { MonoText } from '../components/StyledText';
 
-let helplinesData = [
-  {helplineName:'Campus Safety',tel:'tel:4085544441'},
-  {helplineName:'Ulifeline',tel:'tel:18002738255'},
-  {helplineName:'Trevor Project',tel:'tel:18664887386'},];
+let helplinesData = ['Campus Safety','Ulifeline','Trevor Project'];
 
-class HomeScreen extends React.Component {
+class JournalScreen extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -24,14 +24,12 @@ class HomeScreen extends React.Component {
     alert("Call button Clicked!!!");
   }
 
-  SmallCardComponent(helplineName,tel) {
+  ToughtsCardComponent(textvalue) {
     return(
-    <View>
+    <View style={styles.cardSize}>
        <Card style={styles.cardSize} >
-       <Text style={styles.cardTextStyle}>{helplineName}</Text>
-       <TouchableOpacity activeOpacity = { .5 } onPress={() => Linking.openURL(tel)}>
-          <Image source={require('../assets/images/phone-image.png')} style = {styles.phoneimg} />
-        </TouchableOpacity>
+    <Text style={styles.cardTextStyle}>{textvalue}</Text>
+       <TextInput style={styles.textBoxStyle}/>
       </Card>
    </View>
     );
@@ -41,35 +39,24 @@ class HomeScreen extends React.Component {
   render() {
     return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-    <ScrollView horizontal={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
-    <View>
-    <View >
-    <Text style={styles.mainTextStyle}>{'Hotlines& \n Appointments'}</Text>
+     <View>
+     <ImageBackground source={cloud} style={styles.image}>
+      <Text style={styles.text}>text on image</Text>
+    </ImageBackground>
+    <Text style={styles.mainTextStyle}>Journal</Text>
     </View>
+    <ScrollView horizontal={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
     <View style={styles.finalrow}>
-      {helplinesData.map((values) => {return(this.SmallCardComponent(values.helplineName,values.tel))})}
-   </View>
-   <View>
-     <Panel
-      text='CAPS'
-      extendedText='Counseling and Psycological Services'
-      displayText='Display text when CAPS is clicked'/>
-   </View>
-   <View>
-     <Panel
-      text='SHS'
-      extendedText='Student Health Services'
-      displayText='Display text when SHS is clicked'/>
-   </View>
-   </View>
-   </ScrollView>
+    {helplinesData.map((values) => {return(this.ToughtsCardComponent(textvalue))})}
+    </View>
+    </ScrollView>
     </ScrollView>
   );
 }
 
 }
 
-export default HomeScreen;
+export default JournalScreen;
 
 var styles = StyleSheet.create({
   container: {
@@ -77,12 +64,32 @@ var styles = StyleSheet.create({
     backgroundColor: '#2D709E',
   },
 
+  image: {
+    resizeMode: "cover",
+    justifyContent: "center",
+    
+
+  },
+  text: {
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 30,
+    marginTop: 10,
+    color: 'blue',
+  },
+  textBoxStyle: {
+    height: 150, 
+    borderRadius:10,
+    borderColor: 'gray', 
+    borderWidth: 1,
+  },
+
   mainTextStyle:{
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 30,
-    marginTop: 0,
-
+    marginTop: 10,
+    marginLeft: 10,
     color: 'white',
   },
   finalrow: {
@@ -90,8 +97,8 @@ var styles = StyleSheet.create({
     margin: 10,
   },
   cardSize : {
-    width:120,
-    height:150,
+    width:250,
+    height:400,
     borderRadius:10,
     flexDirection:'row',
     padding: 10,

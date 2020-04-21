@@ -27,10 +27,8 @@ import bookimage4 from '../assets/images/bookicon4.png';
 import bookimage5 from '../assets/images/bookicon5.png';
 import bookimage6 from '../assets/images/bookicon6.png';
 import bookimage7 from '../assets/images/bookicon7.png';
-
-
-
-
+import ulifeline from '../assets/images/ulifeline.png';
+import trevor from '../assets/images/trevor.png';
 
 
 
@@ -38,9 +36,11 @@ import bookimage7 from '../assets/images/bookicon7.png';
 import { MonoText } from '../components/StyledText';
 
 let appValues = [
-  {appName: 'MoodPath', appIcon: moodpathicon, 
-   appDescription: 'Moodpath is the leading mental health app of emotional well-being.',
-   appLink:'https://mymoodpath.com/en/'},
+  {
+    appName: 'MoodPath', appIcon: moodpathicon, 
+    appDescription: 'Moodpath is the leading mental health app of emotional well-being.',
+    appLink:'https://mymoodpath.com/en/'
+  },
   {appName: 'HeadSpace', appIcon: headspaceappicon, 
    appDescription:'Meditation has been shown to help people to releive stress',
    appLink:'https://www.headspace.com/headspace-meditation-app'},
@@ -81,6 +81,10 @@ let bookValues = [
   {bookImage:bookimage6, bookLink:'https://www.amazon.com/Things-Might-Terribly-Horribly-Wrong/dp/1572247118'},
   {bookImage:bookimage7, bookLink:'https://www.amazon.com/Body-Keeps-Score-Healing-Trauma/dp/0143127748'},
 ];
+ let hotlineValues = [
+   {hotlineImage:ulifeline,hotlineNumber:'18002738255',hotlineCall:'tel:18002738255',hotlineDescription:' '},
+   {hotlineImage:trevor,hotlineNumber:'18664887386',hotlineCall:'tel:18664887386',hotlineDescription:'Trevor desc'},
+ ];
 
 class ResourcesScreen extends React.Component {
   constructor(props) {
@@ -139,6 +143,20 @@ class ResourcesScreen extends React.Component {
     </View>
     );
   }
+  hotlinesComponent(hotlineImage,hotlineNumber,hotlineCall,hotlineDescription){
+    return(
+      <View>
+         <Card style={styles.hotlinesComponentStyle} >
+         <TouchableOpacity activeOpacity = { .5 } onPress={() => Linking.openURL(hotlineCall)}>
+            <Image source={hotlineImage} style = {styles.appIconStyle} />
+          </TouchableOpacity>
+          <Text style={styles.cardTextStyle}>{hotlineNumber}</Text>
+      <Text style={styles.smallCardTextStyle}>{hotlineDescription}</Text>
+        </Card>
+     </View>
+      );
+
+  }
 
 
 
@@ -177,6 +195,14 @@ class ResourcesScreen extends React.Component {
     {youtubeVediosValues.map((values) => {return(this.youtubeCardComponent(values.vedioImage,values.vedioName,values.vedioDesc,values.vedioLink))})}
     </View>
    </ScrollView>
+
+   <Text style={styles.smallTextStyle}>{'Hotlines'}</Text>
+   <ScrollView horizontal={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
+    <View style={styles.finalrow}>
+    {hotlineValues.map((values) => {return(this.hotlinesComponent(values.hotlineImage,values.hotlineNumber,values.hotlineCall,values.hotlineDescription))})}
+    </View>
+   </ScrollView>
+
    </ScrollView>
   );
 }
@@ -216,6 +242,17 @@ var styles = StyleSheet.create({
   cardSize : {
     width:150,
     height:240,
+    borderRadius:10,
+    flexDirection:'row',
+    padding: 10,
+    marginRight: 18,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignContent:'center',
+  },
+  hotlinesComponentStyle : {
+    width:170,
+    height:200,
     borderRadius:10,
     flexDirection:'row',
     padding: 10,
@@ -267,9 +304,7 @@ bookIconStyle: {
   height:260,
 },
 podcastStyle: {
-  marginLeft: 15,
   alignContent:'center',
-  marginRight:10,
   width:150,
   height:200,
   borderRadius:30,

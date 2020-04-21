@@ -10,6 +10,9 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import useLinking from './navigation/useLinking';
 
 const Stack = createStackNavigator();
+const initialDisplayText='This is initial screen';
+
+
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -21,7 +24,8 @@ export default function App(props) {
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
-        SplashScreen.preventAutoHide();
+       SplashScreen.preventAutoHide();
+        
 
         // Load our initial navigation state
         setInitialNavigationState(await getInitialState());
@@ -32,6 +36,7 @@ export default function App(props) {
           'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
         });
       } catch (e) {
+        
         // We might want to provide this error information to an error reporting service
         console.warn(e);
       } finally {
