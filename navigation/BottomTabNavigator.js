@@ -58,7 +58,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Calendar"
-        component={JournalScreen}
+        component={HomeScreen}
         options={{
           title: 'Calendar',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-calendar" />,
@@ -74,7 +74,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Main"
-        component={LinksScreen}
+        component={JournalScreen}
         options={{
           title: 'Settings',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-menu" />,

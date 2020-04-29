@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Linking, ImageBackground, TextInput } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Linking, ImageBackground, TextInput,Alert } from 'react-native';
 import { ScrollView, RectButton } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,94 +10,65 @@ import Panel from './Panel';
 
 
 import cloud from '../assets/images/journalmainicon.png';
-
+import cloud1 from '../assets/images/journalicon1.png';
+import cloud2 from '../assets/images/journalicon2.png';
 
 import { MonoText } from '../components/StyledText';
-import JournalScreen2 from './JournalScreen2';
 
-let promptHeading = ['FreeWrite','Right now my greatest challenge is...',
-'Positives of today were... Negatives about today were...',
-'When times get tough I would like to remember',
-'Write a love letter to yourself...',
-'On a scale of 1-10 my mental health is at a _____ because...',
-'Who has been your biggest supporter? Write that person a thank you letter...',
-'A fear I would like to overcome is... I can do these things to start overcoming it...',
-'Name ten things you can start doing to take care of yourself.'];
+let promptHeading = ['FreeWrite','When times get tough I would like to remember','FreeWrite','When times get tough I would like to remember'];
 
+  
 
-
-
-class JournalScreen extends React.Component {
+class JournalScreen2 extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-             nextPage: false,
-             promptText: null,
-        };
   }
-  MovetoNextPage = (text)=>{
-    this.setState({
-      nextPage: true,
-      promptText: text,
-    });
-  }
-  PromptsCardComponent(textvalue) {
-    return(
-    <View style={styles.cardSize}>
-       <Card style={styles.cardSize} >
-    <Text style={styles.cardTextStyle} onPress={() => this.MovetoNextPage(textvalue)}>{textvalue}</Text>
-      </Card>
-   </View>
-    );
-   
 
+  buttonPressed() {
+    alert("Shows mobile's Contacts");
   }
  
 
 
   render() {
-    
-    const {nextPage,promptText}=this.state;
-    let componentTobeRendered;
-    console.log(nextPage);
-    if(nextPage){
-      componentTobeRendered=<JournalScreen2 textValue={promptText}/>
-    }
-    if(!nextPage){
-      componentTobeRendered= 
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <View>
-     <Text style={styles.mainTextStyle}>Journal</Text>
-     </View>
-     <ScrollView verrtical={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
-     <View style={styles.finalrow}>
-     {promptHeading.map((text) => {return(this.PromptsCardComponent(text))})}
-     </View>
-     </ScrollView>
-     </ScrollView>
-    }
+    const textVal = this.props.textValue;
+    function ToughtsCardComponent(props) {
+        return (
+            <View style={styles.cardSize}>
+       <Card style={styles.cardSize} >
+    <Text style={styles.cardTextStyle}>{props.textValue}</Text>
+    <TextInput style={styles.textBoxStyle}/>
+    <TouchableOpacity  activeOpacity = { .5 } style={styles.buttonStyle} onPress={props.buttonPress}>
+               <Text style={styles.buttonTextStyle}>Submit</Text>
+        </TouchableOpacity>
+      </Card>
+   </View>  
+        );
+      }
     return (
-      
-    <View style={styles.container}>
-    {componentTobeRendered}
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+     <View>
+     
+    <Text style={styles.mainTextStyle}>Journal2</Text>
     </View>
-    
+    <ScrollView verrtical={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
+    <View style={styles.finalrow}>
+        <ToughtsCardComponent textValue={textVal} buttonPress={this.buttonPressed}/>
+        <Text style={styles.smallTextStyle}>choose a different prompt</Text>
+    </View>
+    </ScrollView>
+    </ScrollView>
   );
 }
-
 }
 
-export default JournalScreen;
+export default JournalScreen2;
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2D709E',
-  },
-  contentContainer: {
-    flex: 1,
-    paddingTop: 20,
-    backgroundColor: '#2D709E',
+   
   },
 
   image: {
@@ -112,6 +83,30 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     color:'#2D709E',
   },
+  smallTextStyle:{
+    color: 'white',
+    marginLeft: 12,
+    textDecorationLine: 'underline',
+    
+  },
+  buttonStyle: {
+      width:150,
+      height:40,
+      marginLeft:70,
+     
+      borderRadius:10,
+      backgroundColor:'#5DBAE4',
+      alignItems:"center",
+
+     
+
+  },
+  buttonTextStyle: {
+    fontStyle: 'normal',
+    fontSize: 18,
+    color:'#FFFFFF',
+    marginTop:8,
+  },
   text: {
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -120,11 +115,14 @@ var styles = StyleSheet.create({
     color: 'blue',
   },
   textBoxStyle: {
-    height: 150, 
+    width:250,
+    height: 300, 
     borderRadius:10,
     borderColor: 'gray', 
-    borderWidth: 1,
-  },
+    borderWidth: 2,
+    backgroundColor: '#FFFFFF',
+    marginLeft:15,
+    },
 
   mainTextStyle:{
     fontStyle: 'normal',
@@ -142,7 +140,7 @@ var styles = StyleSheet.create({
   },
   cardSize : {
     width:300,
-    height:80,
+    height:450,
     borderRadius:10,
     marginBottom:20,
     padding: 10,

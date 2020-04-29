@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView, RectButton } from 'react-native-gesture-handler';
+import FirstPage from '../components/FirstPage';
 
 const feeling = ['Excited', 'Energetic', 'Playful', 'Creative', 'Aware', 'Other'];
+
 
 class FeelingSecond extends React.Component {
 
@@ -30,8 +32,8 @@ render(){
    <View style={styles.contentContainer}>
    <Text style={styles.mainHead} >How are you {'\n'} feeling today? </Text>
    <Image source={require('../assets/images/feeling-second.png')} style = {styles.feelingImg}/>
-   <Text style={styles.regularText} > I feel {text}. </Text>
-   <Text style={styles.miniText} > I change my mind </Text>
+   <Text style={styles.regularText}> I feel {text}. </Text>
+   <Text style={styles.miniText} onPress={this.MoveToPreviousPage}> I change my mind </Text>
    <Text style={styles.regularText} > More Specifically,{'\n'} I feel: </Text>
    </View>
    <View>

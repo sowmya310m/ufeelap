@@ -27,22 +27,27 @@ class FirstPage extends React.Component {
    switch(value) {
       case 1:
         sampleText = 'SAD';
+        sampleImage = require('../assets/images/emotions/sad1.png');
         break;
       case 2:
         sampleText = 'MAD';
+        sampleImage = require('../assets/images/emotions/MAD1.png');
         break;
       case 3:
         sampleText = 'SCARED';
+        sampleImage = require('../assets/images/emotions/scared1.png');
         break;
       case 4:
         sampleText = 'JOYFUL';
-        sampleImage = require('../assets/images/feeling-second.png');
+        sampleImage = require('../assets/images/emotions/joyful1.png');
         break;
       case 5:
         sampleText = 'POWERFUL';
+        sampleImage = require('../assets/images/emotions/powerful1.png');
         break;
       case 6:
         sampleText = 'PEACEFUL';
+        sampleImage = require('../assets/images/feeling-second.png');
         break;
       default:
         sampleText = null;
@@ -155,11 +160,12 @@ var styles = StyleSheet.create({
     marginTop: 30,
   },
   feelingImg: {
-    width: 120,
-    height: 120,
-    resizeMode: 'center',
+    width: 150,
+    height: 150,
+    resizeMode: 'contain',
     marginTop: -200,
     marginLeft: -200,
+    borderRadius: 450,
   },
   sliderStyle: {
     width:300,
