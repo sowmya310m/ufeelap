@@ -31,7 +31,7 @@ render(){
    <Text style={styles.mainHead} >How are you {'\n'} feeling today? </Text>
    <Image source={require('../assets/images/feeling-second.png')} style = {styles.feelingImg}/>
    <Text style={styles.regularText} > I feel {text}. </Text>
-   <Text style={styles.miniText} > I change my mind </Text>
+   <Text style={styles.miniText} > I change my mind ``</Text>
    <Text style={styles.regularText} > More Specifically,{'\n'} I feel: </Text>
    </View>
    <View>
