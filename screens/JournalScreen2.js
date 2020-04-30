@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Linking } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Linking, ImageBackground, TextInput,Alert } from 'react-native';
 import { ScrollView, RectButton } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,104 +8,147 @@ import { Icon } from 'react-native-elements';
 import Panel from './Panel';
 
 
+
+import cloud from '../assets/images/journalmainicon.png';
+import cloud1 from '../assets/images/journalicon1.png';
+import cloud2 from '../assets/images/journalicon2.png';
+
 import { MonoText } from '../components/StyledText';
 
-let helplinesData = [
-  {helplineName:'Campus Safety',tel:'tel:4085544441'},
-  {helplineName:'Ulifeline',tel:'tel:18002738255'},
-  {helplineName:'Trevor Project',tel:'tel:18664887386'},];
+let promptHeading = ['FreeWrite','When times get tough I would like to remember','FreeWrite','When times get tough I would like to remember'];
 
-class HomeScreen extends React.Component {
+  
+
+class JournalScreen2 extends React.Component {
   constructor(props) {
     super(props);
   }
-  callButton = () =>
-  {
-    alert("Call button Clicked!!!");
-  }
 
-  SmallCardComponent(helplineName,tel) {
-    return(
-    <View>
-       <Card style={styles.cardSize} >
-       <Text style={styles.cardTextStyle}>{helplineName}</Text>
-       <TouchableOpacity activeOpacity = { .5 } onPress={() => Linking.openURL(tel)}>
-          <Image source={require('../assets/images/phone-image.png')} style = {styles.phoneimg} />
-        </TouchableOpacity>
-      </Card>
-   </View>
-    );
+  buttonPressed() {
+    alert("Shows mobile's Contacts");
   }
+ 
 
 
   render() {
+    const textVal = this.props.textValue;
+    function ToughtsCardComponent(props) {
+        return (
+            <View style={styles.cardSize}>
+       <Card style={styles.cardSize} >
+    <Text style={styles.cardTextStyle}>{props.textValue}</Text>
+    <TextInput style={styles.textBoxStyle}/>
+    <TouchableOpacity  activeOpacity = { .5 } style={styles.buttonStyle} onPress={props.buttonPress}>
+               <Text style={styles.buttonTextStyle}>Submit</Text>
+        </TouchableOpacity>
+      </Card>
+   </View>  
+        );
+      }
     return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-    <ScrollView horizontal={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
-    <View>
-    <View >
-    <Text style={styles.mainTextStyle}>{'Hotlines& \n Appointments'}</Text>
+     <View>
+     
+    <Text style={styles.mainTextStyle}>Journal2</Text>
     </View>
+    <ScrollView verrtical={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
     <View style={styles.finalrow}>
-      {helplinesData.map((values) => {return(this.SmallCardComponent(values.helplineName,values.tel))})}
-   </View>
-   <View>
-     <Panel
-      text='CAPS'
-      extendedText='Counseling and Psycological Services'
-      displayText='Display text when CAPS is clicked'/>
-   </View>
-   <View>
-     <Panel
-      text='SHS'
-      extendedText='Student Health Services'
-      displayText='Display text when SHS is clicked'/>
-   </View>
-   </View>
-   </ScrollView>
+        <ToughtsCardComponent textValue={textVal} buttonPress={this.buttonPressed}/>
+        <Text style={styles.smallTextStyle}>choose a different prompt</Text>
+    </View>
+    </ScrollView>
     </ScrollView>
   );
 }
-
 }
 
-export default HomeScreen;
+export default JournalScreen2;
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2D709E',
+   
   },
+
+  image: {
+    height:190,
+    width:150,
+  },
+  cardTextStyle: {
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 18,
+    lineHeight: 22,
+    textAlign: 'center',
+    color:'#2D709E',
+  },
+  smallTextStyle:{
+    color: 'white',
+    marginLeft: 12,
+    textDecorationLine: 'underline',
+    
+  },
+  buttonStyle: {
+      width:150,
+      height:40,
+      marginLeft:70,
+     
+      borderRadius:10,
+      backgroundColor:'#5DBAE4',
+      alignItems:"center",
+
+     
+
+  },
+  buttonTextStyle: {
+    fontStyle: 'normal',
+    fontSize: 18,
+    color:'#FFFFFF',
+    marginTop:8,
+  },
+  text: {
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 30,
+    marginTop: 10,
+    color: 'blue',
+  },
+  textBoxStyle: {
+    width:250,
+    height: 300, 
+    borderRadius:10,
+    borderColor: 'gray', 
+    borderWidth: 2,
+    backgroundColor: '#FFFFFF',
+    marginLeft:15,
+    },
 
   mainTextStyle:{
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 30,
-    marginTop: 0,
-
+    marginTop: 50,
+    marginLeft: 10,
     color: 'white',
   },
   finalrow: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     margin: 10,
+    alignItems:"center",
+   
   },
   cardSize : {
-    width:120,
-    height:150,
+    width:300,
+    height:450,
     borderRadius:10,
-    flexDirection:'row',
+    marginBottom:20,
     padding: 10,
     marginRight: 18,
-    flexDirection: 'column',
+    
     justifyContent: 'space-around',
   },
-  cardTextStyle: {
-  fontStyle: 'normal',
-  fontWeight: 'normal',
-  fontSize: 18,
-  lineHeight: 22,
-  textAlign: 'center',
-},
+ 
 phoneimg: {
   margin: 35,
 },

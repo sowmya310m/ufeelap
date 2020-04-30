@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Linking } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Linking, ImageBackground, TextInput } from 'react-native';
 import { ScrollView, RectButton } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,104 +8,149 @@ import { Icon } from 'react-native-elements';
 import Panel from './Panel';
 
 
+
+import cloud from '../assets/images/journalmainicon.png';
+
+
 import { MonoText } from '../components/StyledText';
+import JournalScreen2 from './JournalScreen2';
 
-let helplinesData = [
-  {helplineName:'Campus Safety',tel:'tel:4085544441'},
-  {helplineName:'Ulifeline',tel:'tel:18002738255'},
-  {helplineName:'Trevor Project',tel:'tel:18664887386'},];
+let promptHeading = ['FreeWrite','Right now my greatest challenge is...',
+'Positives of today were... Negatives about today were...',
+'When times get tough I would like to remember',
+'Write a love letter to yourself...',
+'On a scale of 1-10 my mental health is at a _____ because...',
+'Who has been your biggest supporter? Write that person a thank you letter...',
+'A fear I would like to overcome is... I can do these things to start overcoming it...',
+'Name ten things you can start doing to take care of yourself.'];
 
-class HomeScreen extends React.Component {
+
+
+
+class JournalScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+             nextPage: false,
+             promptText: null,
+        };
   }
-  callButton = () =>
-  {
-    alert("Call button Clicked!!!");
+  MovetoNextPage = (text)=>{
+    this.setState({
+      nextPage: true,
+      promptText: text,
+    });
   }
-
-  SmallCardComponent(helplineName,tel) {
+  PromptsCardComponent(textvalue) {
     return(
-    <View>
+    <View style={styles.cardSize}>
        <Card style={styles.cardSize} >
-       <Text style={styles.cardTextStyle}>{helplineName}</Text>
-       <TouchableOpacity activeOpacity = { .5 } onPress={() => Linking.openURL(tel)}>
-          <Image source={require('../assets/images/phone-image.png')} style = {styles.phoneimg} />
-        </TouchableOpacity>
+    <Text style={styles.cardTextStyle} onPress={() => this.MovetoNextPage(textvalue)}>{textvalue}</Text>
       </Card>
    </View>
     );
+   
+
   }
+ 
 
 
   render() {
+    
+    const {nextPage,promptText}=this.state;
+    let componentTobeRendered;
+    console.log(nextPage);
+    if(nextPage){
+      componentTobeRendered=<JournalScreen2 textValue={promptText}/>
+    }
+    if(!nextPage){
+      componentTobeRendered= 
+      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+      <View>
+     <Text style={styles.mainTextStyle}>Journal</Text>
+     </View>
+     <ScrollView verrtical={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
+     <View style={styles.finalrow}>
+     {promptHeading.map((text) => {return(this.PromptsCardComponent(text))})}
+     </View>
+     </ScrollView>
+     </ScrollView>
+    }
     return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-    <ScrollView horizontal={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
-    <View>
-    <View >
-    <Text style={styles.mainTextStyle}>{'Hotlines& \n Appointments'}</Text>
+      
+    <View style={styles.container}>
+    {componentTobeRendered}
     </View>
-    <View style={styles.finalrow}>
-      {helplinesData.map((values) => {return(this.SmallCardComponent(values.helplineName,values.tel))})}
-   </View>
-   <View>
-     <Panel
-      text='CAPS'
-      extendedText='Counseling and Psycological Services'
-      displayText='Display text when CAPS is clicked'/>
-   </View>
-   <View>
-     <Panel
-      text='SHS'
-      extendedText='Student Health Services'
-      displayText='Display text when SHS is clicked'/>
-   </View>
-   </View>
-   </ScrollView>
-    </ScrollView>
+    
   );
 }
 
 }
 
-export default HomeScreen;
+export default JournalScreen;
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2D709E',
   },
+  contentContainer: {
+    flex: 1,
+    paddingTop: 20,
+    backgroundColor: '#2D709E',
+  },
+
+  image: {
+    height:190,
+    width:150,
+  },
+  cardTextStyle: {
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 18,
+    lineHeight: 22,
+    textAlign: 'center',
+    color:'#2D709E',
+  },
+  text: {
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 30,
+    marginTop: 10,
+    color: 'blue',
+  },
+  textBoxStyle: {
+    height: 150, 
+    borderRadius:10,
+    borderColor: 'gray', 
+    borderWidth: 1,
+  },
 
   mainTextStyle:{
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 30,
-    marginTop: 0,
-
+    marginTop: 50,
+    marginLeft: 10,
     color: 'white',
   },
   finalrow: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     margin: 10,
+    alignItems:"center",
+   
   },
   cardSize : {
-    width:120,
-    height:150,
+    width:300,
+    height:80,
     borderRadius:10,
-    flexDirection:'row',
+    marginBottom:20,
     padding: 10,
     marginRight: 18,
-    flexDirection: 'column',
+    
     justifyContent: 'space-around',
   },
-  cardTextStyle: {
-  fontStyle: 'normal',
-  fontWeight: 'normal',
-  fontSize: 18,
-  lineHeight: 22,
-  textAlign: 'center',
-},
+ 
 phoneimg: {
   margin: 35,
 },
