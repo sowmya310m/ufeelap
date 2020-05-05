@@ -1,29 +1,41 @@
 import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View,  } from 'react-native';
 import { ScrollView, RectButton } from 'react-native-gesture-handler';
-
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 
 import  VerticalSlider from 'rn-vertical-slider';
 
 import FeelingSecond from './FeelingSecond';
+import { feelingsaction } from '../actions/feelingsaction';
 
 
+let sampleText = "";
+let sampleImage = "";
+let buttonClicked = ""
 
-let sampleText = null;
-let sampleImage = null;
+
+const mapStateToProps = state => ({
+  buttonValue: state.feelingReducer.buttonValue,
+  imageValue: state.feelingReducer.imageValue,
+});
+
+
+const mapDispatchToProps = dispatch => ({
+   action: (sampleText, sampleImage) => dispatch(feelingsaction(sampleText, sampleImage)),
+});
 
 class FirstPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-             buttonValue: null,
-             imageValue: null,
              buttonClicked: false,
         };
   }
 
-
  FeelingButtonComponent(value) {
+   const { action } = this.props;
    switch(value) {
       case 1:
         sampleText = 'SAD';
@@ -52,10 +64,7 @@ class FirstPage extends React.Component {
       default:
         sampleText = null;
       }
-   this.setState({
-       buttonValue : sampleText,
-       imageValue: sampleImage //Step 2
-   });
+      action(sampleText, sampleImage);
   }
 
 NextPage() {
@@ -64,29 +73,10 @@ NextPage() {
   });
 }
 
-// renderButton() {
-//   const {buttonValue, imageValue} = this.state;
-//   return(
-//   <View>
-//   {
-//   buttonValue &&
-//   <View>
-//   <Image source={imageValue} style = {styles.feelingImg}/>
-//   <RectButton style={styles.option} type='Text' onPress={this.NextPage.bind(this)}>
-//       <View>
-//           <Text style={styles.optionText}> {buttonValue} </Text>
-//       </View>
-//   </RectButton>
-//   </View>
-// }
-//   </View>
-// );
-// }
-
 
 render(){
-const { buttonValue,imageValue, buttonClicked } = this.state;
-console.log(buttonValue);
+const { buttonClicked } = this.state;
+const {buttonValue, imageValue } = this.props;
  return (
    <View style={styles.contentContainer}>
    {
@@ -115,12 +105,12 @@ console.log(buttonValue);
       {
       buttonValue &&
       <View>
-      <Image source={imageValue} style = {styles.feelingImg}/>
-      <RectButton style={styles.option} type='Text' onPress={this.NextPage.bind(this)}>
-          <View>
-              <Text style={styles.optionText}> {buttonValue} </Text>
-          </View>
-      </RectButton>
+        <Image source={imageValue} style = {styles.feelingImg}/>
+        <RectButton style={styles.option} type='Text' onPress={this.NextPage.bind(this)}>
+            <View>
+                <Text style={styles.optionText}> {buttonValue} </Text>
+            </View>
+        </RectButton>
       </View>
      }
       </View>
@@ -131,9 +121,12 @@ console.log(buttonValue);
   );
 
  }
+
 }
 
-export default FirstPage;
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(FirstPage);
 
 
 var styles = StyleSheet.create({

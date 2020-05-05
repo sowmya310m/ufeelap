@@ -6,7 +6,16 @@ import { Ionicons } from '@expo/vector-icons';
 import {Card, CardItem, Body, Button } from 'native-base';
 import { Icon } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker'
+import { connect } from 'react-redux'
 
+const mapStateToProps = state => ({
+  buttonValue: state.feelingReducer.buttonValue,
+  imageValue: state.feelingReducer.imageValue,
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
 
 
  class CalendarComponent extends React.Component {
@@ -20,7 +29,7 @@ import DatePicker from 'react-native-datepicker'
  }
 
  render(){
-   console.log(this.state.date);
+   const { imageValue, buttonValue } = this.props;
    return (
      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <View style={styles.contentContainer}>
@@ -56,10 +65,13 @@ import DatePicker from 'react-native-datepicker'
          }}
          onDateChange={(date) => {this.setState({date: date})}}
        />
-       </View>
-       <View >
-       <Image source={require('../assets/images/feeling-second.png')} style = {styles.feelingImg}/>
-       </View>
+      </View>
+      <View  style={styles.previousPage}>
+        <Image source={imageValue} style = {styles.feelingImg}/>
+      </View>
+      <View>
+        <Text style={styles.previousText}> {buttonValue} </Text>
+      </View>
       </View>
      </ScrollView>
    )
@@ -69,7 +81,7 @@ import DatePicker from 'react-native-datepicker'
 
 
 
-export default CalendarComponent;
+export default connect(mapStateToProps, mapDispatchToProps) (CalendarComponent);
 
 const styles = StyleSheet.create({
   container: {
@@ -228,10 +240,19 @@ phoneimg: {
     // padding: 25,
   },
   feelingImg: {
-    width: 120,
+    width: 200,
     height: 120,
     resizeMode: 'center',
     marginTop: 50,
     marginLeft: 50,
   },
+  previousPage: {
+    marginTop: -40,
+  },
+  previousText: {
+    marginTop: -70,
+    marginLeft: 200,
+    fontSize: 20,
+    color: 'white',
+  }
 });

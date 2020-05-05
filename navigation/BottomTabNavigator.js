@@ -11,6 +11,7 @@ import Colors from '../constants/Colors';
 import FirstPage from '../components/FirstPage';
 import ResourcesScreen from '../screens/ResourcesScreen';
 import JournalScreen from '../screens/JournalScreen';
+import CalendarComponent from '../components/Calendar'
 
 
 const BottomTab = createBottomTabNavigator();
@@ -83,16 +84,3 @@ export default function BottomTabNavigator({ navigation, route }) {
     </BottomTab.Navigator>
   );
 }
-
-// function getHeaderTitle(route) {
-//   const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
-//
-//   switch (routeName) {
-//     case 'Home':
-//       return '';
-//     case 'Links':
-//       return 'Settings';
-//     case 'Safe':
-//       return '';
-//   }
-// }
