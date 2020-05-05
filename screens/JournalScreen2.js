@@ -17,7 +17,7 @@ import { MonoText } from '../components/StyledText';
 
 let promptHeading = ['FreeWrite','When times get tough I would like to remember','FreeWrite','When times get tough I would like to remember'];
 
-  
+
 
 class JournalScreen2 extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class JournalScreen2 extends React.Component {
   buttonPressed() {
     alert("Shows mobile's Contacts");
   }
- 
+
 
 
   render() {
@@ -42,13 +42,13 @@ class JournalScreen2 extends React.Component {
                <Text style={styles.buttonTextStyle}>Submit</Text>
         </TouchableOpacity>
       </Card>
-   </View>  
+   </View>
         );
       }
     return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
      <View>
-     
+
     <Text style={styles.mainTextStyle}>Journal2</Text>
     </View>
     <ScrollView verrtical={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -68,7 +68,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2D709E',
-   
+
   },
 
   image: {
@@ -87,18 +87,18 @@ var styles = StyleSheet.create({
     color: 'white',
     marginLeft: 12,
     textDecorationLine: 'underline',
-    
+
   },
   buttonStyle: {
       width:150,
       height:40,
       marginLeft:70,
-     
+
       borderRadius:10,
       backgroundColor:'#5DBAE4',
       alignItems:"center",
 
-     
+
 
   },
   buttonTextStyle: {
@@ -116,9 +116,9 @@ var styles = StyleSheet.create({
   },
   textBoxStyle: {
     width:250,
-    height: 300, 
+    height: 300,
     borderRadius:10,
-    borderColor: 'gray', 
+    borderColor: 'gray',
     borderWidth: 2,
     backgroundColor: '#FFFFFF',
     marginLeft:15,
@@ -136,7 +136,7 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     margin: 10,
     alignItems:"center",
-   
+
   },
   cardSize : {
     width:300,
@@ -145,10 +145,10 @@ var styles = StyleSheet.create({
     marginBottom:20,
     padding: 10,
     marginRight: 18,
-    
+
     justifyContent: 'space-around',
   },
- 
+
 phoneimg: {
   margin: 35,
 },

@@ -12,6 +12,7 @@ import FirstPage from '../components/FirstPage';
 import ResourcesScreen from '../screens/ResourcesScreen';
 import JournalScreen from '../screens/JournalScreen';
 import CalendarComponent from '../components/Calendar'
+import NewJournalScreen from '../screens/NewJournalScreen';
 
 
 const BottomTab = createBottomTabNavigator();
@@ -75,7 +76,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Main"
-        component={JournalScreen}
+        component={NewJournalScreen}
         options={{
           title: 'Settings',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-menu" />,
