@@ -7,6 +7,15 @@ import {Card, CardItem, Body, Button } from 'native-base';
 import { Icon } from 'react-native-elements';
 import Panel from './Panel';
 
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+
+import CalendarComponent from '../components/Calendar';
+import { journalsaction } from '../actions/journalsaction';
+
+
+
 
 let promptHeading = ['FreeWrite','Right now my greatest challenge is...',
 'Positives of today were... Negatives about today were...',
@@ -18,6 +27,17 @@ let promptHeading = ['FreeWrite','Right now my greatest challenge is...',
 'Name ten things you can start doing to take care of yourself.'];
 
 
+const mapStateToProps = state => ({
+
+});
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+     saveDiary: (entry) => dispatch({type: 'SAVE_DIARY', entry: entry}),
+     getDiary: () => dispatch({type: 'SEND_DIARY'}),
+   };
+};
 
 
 class NewJournalScreen extends React.Component {
@@ -26,14 +46,18 @@ class NewJournalScreen extends React.Component {
     this.state = {
              nextPage: false,
              promptText: null,
+             nextComponent: false,
+             finalText: null,
         };
   }
+
   MovetoNextPage = (text)=>{
     this.setState({
       nextPage: true,
       promptText: text,
     });
   }
+
   MovetoPreviousPage =()=>{
     this.setState({
         nextPage: false,
@@ -41,6 +65,18 @@ class NewJournalScreen extends React.Component {
       });
 
   }
+
+  MovetoCalendarPage = () => {
+    const { saveDiary } = this.props;
+    const { finalText } = this.state;
+    this.setState({
+        nextComponent: true,
+      });
+     saveDiary(finalText);
+  }
+
+
+
   PromptsCardComponent(textvalue) {
     return(
     <View style={styles.cardSize}>
@@ -50,17 +86,22 @@ class NewJournalScreen extends React.Component {
    </View>
     );
   }
+
+
    ToughtsCardComponent(tex) {
     return (
         <View style={styles.toughtsCardSize}>
-   <Card style={styles.toughtsCardSize} >
-<Text style={styles.toughtsCardTextStyle}>{tex}</Text>
-<TextInput style={styles.textBoxStyle}/>
+          <Card style={styles.toughtsCardSize} >
+            <Text style={styles.toughtsCardTextStyle}>{tex}</Text>
+              <TextInput style={styles.textBoxStyle} multiline={true} multiline={true}
+                onChangeText={(text) => {
+                  this.setState({ finalText: text })
+            }  } />
 <TouchableOpacity  activeOpacity = { .5 } style={styles.buttonStyle}>
-           <Text style={styles.buttonTextStyle}>Submit</Text>
+           <Text style={styles.buttonTextStyle} onPress={this.MovetoCalendarPage.bind()}>Submit</Text>
     </TouchableOpacity>
   </Card>
-</View>  
+</View>
     );
   }
 
@@ -69,10 +110,9 @@ class NewJournalScreen extends React.Component {
 
 
   render() {
-    
-    const {nextPage,promptText}=this.state;
+
+    const {nextPage,promptText,nextComponent}=this.state;
     let componentTobeRendered;
-    console.log(nextPage);
     if(nextPage){
       //componentTobeRendered=<JournalScr textValue={promptText}/>
       componentTobeRendered=
@@ -89,7 +129,7 @@ class NewJournalScreen extends React.Component {
      </ScrollView>
     }
     if(!nextPage){
-      componentTobeRendered= 
+      componentTobeRendered=
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <View>
      <Text style={styles.mainTextStyle}>Journal</Text>
@@ -102,17 +142,25 @@ class NewJournalScreen extends React.Component {
      </ScrollView>
     }
     return (
-      
+
     <View style={styles.container}>
-    {componentTobeRendered}
+    {
+    nextComponent &&
+    <CalendarComponent />
+    }
+    {
+      !nextComponent &&
+      componentTobeRendered
+    }
     </View>
-    
+
   );
 }
 
 }
 
-export default NewJournalScreen;
+
+export default connect(mapStateToProps, mapDispatchToProps) (NewJournalScreen);
 
 var styles = StyleSheet.create({
   container: {
@@ -144,9 +192,9 @@ var styles = StyleSheet.create({
 
   textBoxStyle :{
     width:250,
-    height: 300, 
+    height: 300,
     borderRadius:10,
-    borderColor: 'gray', 
+    borderColor: 'gray',
     borderWidth: 2,
     backgroundColor: '#FFFFFF',
     marginLeft:15,
@@ -184,7 +232,7 @@ var styles = StyleSheet.create({
     color: 'white',
     marginLeft: 12,
     textDecorationLine: 'underline',
-    
+
   },
 
   mainTextStyle:{
@@ -199,7 +247,7 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     margin: 10,
     alignItems:"center",
-   
+
   },
   cardSize : {
     width:300,
@@ -210,7 +258,7 @@ var styles = StyleSheet.create({
     marginRight: 18,
     justifyContent: 'space-around',
   },
- 
+
 phoneimg: {
   margin: 35,
 },

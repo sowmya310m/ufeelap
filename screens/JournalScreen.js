@@ -35,28 +35,28 @@ class JournalScreen extends React.Component {
              promptText: null,
         };
   }
-  MovetoNextPage = (text)=>{
+  MovetoNextPage = (text)=> {
     this.setState({
       nextPage: true,
       promptText: text,
     });
   }
+
   PromptsCardComponent(textvalue) {
     return(
     <View style={styles.cardSize}>
        <Card style={styles.cardSize} >
-    <Text style={styles.cardTextStyle} onPress={() => this.MovetoNextPage(textvalue)}>{textvalue}</Text>
+        <Text style={styles.cardTextStyle} onPress={() => this.MovetoNextPage(textvalue)}>{textvalue}</Text>
       </Card>
    </View>
     );
-   
+
 
   }
- 
+
 
 
   render() {
-    
     const {nextPage,promptText}=this.state;
     let componentTobeRendered;
     console.log(nextPage);
@@ -64,24 +64,24 @@ class JournalScreen extends React.Component {
       componentTobeRendered=<JournalScreen2 textValue={promptText}/>
     }
     if(!nextPage){
-      componentTobeRendered= 
+      componentTobeRendered=
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <View>
-     <Text style={styles.mainTextStyle}>Journal</Text>
-     </View>
-     <ScrollView verrtical={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
-     <View style={styles.finalrow}>
-     {promptHeading.map((text) => {return(this.PromptsCardComponent(text))})}
-     </View>
-     </ScrollView>
+        <View>
+          <Text style={styles.mainTextStyle}>Journal</Text>
+        </View>
+        <ScrollView verrtical={true} style={styles.container} contentContainerStyle={styles.contentContainer}>
+          <View style={styles.finalrow}>
+            {promptHeading.map((text) => {return(this.PromptsCardComponent(text))})}
+          </View>
+         </ScrollView>
      </ScrollView>
     }
     return (
-      
+
     <View style={styles.container}>
     {componentTobeRendered}
     </View>
-    
+
   );
 }
 
@@ -120,9 +120,9 @@ var styles = StyleSheet.create({
     color: 'blue',
   },
   textBoxStyle: {
-    height: 150, 
+    height: 150,
     borderRadius:10,
-    borderColor: 'gray', 
+    borderColor: 'gray',
     borderWidth: 1,
   },
 
@@ -138,7 +138,7 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     margin: 10,
     alignItems:"center",
-   
+
   },
   cardSize : {
     width:300,
@@ -147,10 +147,10 @@ var styles = StyleSheet.create({
     marginBottom:20,
     padding: 10,
     marginRight: 18,
-    
+
     justifyContent: 'space-around',
   },
- 
+
 phoneimg: {
   margin: 35,
 },

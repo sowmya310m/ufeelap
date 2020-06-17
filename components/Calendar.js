@@ -8,9 +8,11 @@ import { Icon } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker'
 import { connect } from 'react-redux'
 
-const mapStateToProps = state => ({
+const mapStateToProps = state =>
+({
   buttonValue: state.feelingReducer.buttonValue,
   imageValue: state.feelingReducer.imageValue,
+  entries: state.diary.entries,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -25,11 +27,34 @@ const mapDispatchToProps = dispatch => ({
    var date = new Date().getDate(); //Current Date
    var month = new Date().getMonth() + 1; //Current Month
    var year = new Date().getFullYear(); //Current Ye
+   if(date < 10) {
+     date = '0'+ date;
+   }
+   if(month < 10) {
+     month = '0'+ month;
+   }
    this.state = {date: year + '-' + month + '-' + date}
  }
 
+
+ renderJournal() {
+   const { entries } = this.props;
+   return entries.map((e) => {
+     if (e.date === this.state.date) {
+       return (
+         <View style= {styles.cont}>
+             <Card style= {styles.cardSize}>
+             <Text style= {styles.cardTextStyle}>{e.entry}</Text>
+             </Card>
+         </View>
+       )
+   }
+ });
+}
+
+
  render(){
-   const { imageValue, buttonValue } = this.props;
+   const { imageValue, buttonValue,journalValue,entry, entries } = this.props;
    return (
      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <View style={styles.contentContainer}>
@@ -63,7 +88,7 @@ const mapDispatchToProps = dispatch => ({
            },
            // ... You can check the source to find the other keys.
          }}
-         onDateChange={(date) => {this.setState({date: date})}}
+         onDateChange={(date) => {this.setState({date: date, time: new Date()})}}
        />
       </View>
       <View  style={styles.previousPage}>
@@ -71,6 +96,12 @@ const mapDispatchToProps = dispatch => ({
       </View>
       <View>
         <Text style={styles.previousText}> {buttonValue} </Text>
+      </View>
+
+            <View style={styles.finalrow}>
+          {
+            this.renderJournal()
+          }
       </View>
       </View>
      </ScrollView>
@@ -105,8 +136,7 @@ const styles = StyleSheet.create({
   },
   finalrow: {
     flexDirection: 'column',
-    marginTop: 25,
-    marginBottom: 20,
+    marginTop: 5,
   },
   allContactsTextStyle:{
       color: 'white',
